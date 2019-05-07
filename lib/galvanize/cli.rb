@@ -10,17 +10,16 @@ module Galvanize
         galvanize command [arguments] <options>
     BANNER
 
-
     option :version,
-      short: "-v",
-      long: "--version",
-      description: "Show chef version",
+      short: '-v',
+      long: '--version',
+      description: 'Show chef version',
       boolean: true
 
     option :help,
-      short: "-h",
-      long: "--help",
-      description: "Show this message",
+      short: '-h',
+      long: '--help',
+      description: 'Show this message',
       boolean: true
 
     attr_reader :argv
@@ -83,7 +82,7 @@ module Galvanize
       param =~ /^-/
     end
 
-    private 
+    private
 
     def sanity_check!
       true
