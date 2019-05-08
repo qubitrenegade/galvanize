@@ -1,3 +1,4 @@
+require 'chef-dk/commands_map'
 
 module Galvanize
   class CLI
@@ -80,6 +81,14 @@ module Galvanize
 
     def option?(param)
       param =~ /^-/
+    end
+
+    def commands_map
+      ChefDK.commands_map
+    end
+
+    def have_command?(name)
+      commands_map.have_command?(name)
     end
 
     private
