@@ -1,3 +1,6 @@
+require 'galvanize/helpers'
+require 'galvanize/commands_map'
+require 'galvanize/builtin_commands'
 
 module Galvanize
   class CLI
@@ -45,7 +48,8 @@ module Galvanize
         exit_code = subcommand.run_with_default_options(subcommand_params)
         exit normalized_exit_code(exit_code)
       else
-        err "Unknown command `#{subcommand_name}'."
+        # err "Unknown command `#{subcommand_name}'."
+        msg "Unknown command `#{subcommand_name}'."
         show_help
         exit 1
       end
@@ -72,17 +76,52 @@ module Galvanize
 
     def show_help
       puts banner
+      puts "\nAvailable Commands:"
+
+      justify_length = subcommands.map(&:length).max + 2                                                                                             
+      subcommand_specs.each do |name, spec|
+        next if spec.hidden
+        puts "    #{"#{name}".ljust(justify_length)}#{spec.description}"
+      end 
     end
 
     def exit(n)
       Kernel.exit(n)
     end
 
+    def commands_map
+      Galvanize.commands_map
+    end
+
+    def have_command?(name)
+      true || commands_map.have_command?(name)
+    end
+
+    def subcommands
+      commands_map.command_names
+    end
+
+    def subcommand_specs
+      commands_map.command_specs
+    end
+
     def option?(param)
       param =~ /^-/
     end
 
+    def instantiate_subcommand(name)
+      commands_map.instantiate(name)
+    end
+
     private
+
+    def normalized_exit_code(maybe_integer)
+      if maybe_integer.kind_of?(Integer) && (0..255).cover?(maybe_integer)
+        maybe_integer
+      else
+        0   
+      end 
+    end
 
     def sanity_check!
       true
