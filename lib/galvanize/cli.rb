@@ -78,11 +78,11 @@ module Galvanize
       puts banner
       puts "\nAvailable Commands:"
 
-      justify_length = subcommands.map(&:length).max + 2                                                                                             
+      justify_length = subcommands.map(&:length).max + 2
       subcommand_specs.each do |name, spec|
         next if spec.hidden
-        puts "    #{"#{name}".ljust(justify_length)}#{spec.description}"
-      end 
+        puts "    #{name.to_s.ljust(justify_length)}#{spec.description}"
+      end
     end
 
     def exit(n)
@@ -116,11 +116,11 @@ module Galvanize
     private
 
     def normalized_exit_code(maybe_integer)
-      if maybe_integer.kind_of?(Integer) && (0..255).cover?(maybe_integer)
+      if maybe_integer.is_a?(Integer) && (0..255).cover?(maybe_integer)
         maybe_integer
       else
-        0   
-      end 
+        0
+      end
     end
 
     def sanity_check!
