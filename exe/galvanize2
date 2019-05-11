@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require "chef-dk/cli"
+require 'chef-dk/command/generate'
+require 'chef-dk/command/generator_commands/base'
+
+Kernel.trap(:INT) { print("\n"); exit 1 }
+
+ChefDK.commands do |c|
+  c.builtin 'foo', :Foo, require_path: 'foo', desc: 'Foo'
+end
+
+ChefDK::Command::Generate.generator(:asdf, :Foo, 'asdf')
+
+module ChefDK
+  module Command
+    class Generate
+      generator(:asdfasfsdad, :Cookbook, 'asdfsadf')
+    end
+    module GeneratorCommands
+      class Foo < Base
+        def run
+          puts "I'm running!!!"
+        end
+      end
+    end
+  end
+end
+
+ChefDK::CLI.new(ARGV.clone).run
