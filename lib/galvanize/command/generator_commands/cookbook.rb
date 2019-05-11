@@ -19,7 +19,7 @@ require 'galvanize/command/generator_commands/base'
 
 module Galvanize
   module Command
-    module ChefDK::GeneratorCommands
+    module GeneratorCommands
       # ## CookbookFile
       # chef generate cookbook path/to/basename --generator-cookbook=path/to/generator
       #
@@ -71,7 +71,7 @@ module Galvanize
           description: 'Use PIPELINE to set target branch to something other than master for the build_cookbook',
           default: 'master'
 
-        options.merge!(SharedChefDK::GeneratorOptions.options)
+        options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
           @params_valid = true

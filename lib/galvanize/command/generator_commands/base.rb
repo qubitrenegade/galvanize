@@ -51,7 +51,7 @@ module Galvanize
         # An instance of ChefRunner. Calling ChefRunner#converge will trigger
         # convergence and generate the desired code.
         def chef_runner
-          @chef_runner ||= ChefRunner.new(generator_cookbook_path, ["recipe[#{generator_cookbook_name}::#{recipe}]"])
+          @chef_runner ||= ChefDK::ChefRunner.new(generator_cookbook_path, ["recipe[#{generator_cookbook_name}::#{recipe}]"])
         end
 
         # Path to the directory where the code_generator cookbook is located.
