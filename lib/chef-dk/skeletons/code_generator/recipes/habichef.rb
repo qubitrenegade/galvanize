@@ -29,7 +29,7 @@ end
 %w(
   habitat/default.toml
   habitat/plan.sh
-  habitat/README.md 
+  habitat/README.md
   policyfiles/base.rb
 ).each do |name|
   template File.join habitat_dir, name do
