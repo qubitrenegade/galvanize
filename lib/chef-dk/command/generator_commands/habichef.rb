@@ -1,7 +1,11 @@
+require 'chef-dk/command/generate'
 require 'chef-dk/command/generator_commands/base'
 
 module ChefDK
   module Command
+    class Generate
+      generator(:habichef, :HabiChef, 'Generate a HabiChef skeleton for using Habitat and Chef Policyfiles')
+    end
     module GeneratorCommands
       class HabiChef < Base
         banner 'Usage: galvanize generate habichef NAME [options]'
@@ -22,8 +26,6 @@ module ChefDK
           read_and_validate_params
           if params_valid?
             setup_context
-            puts %(I'm running !!!)
-
             chef_runner.converge
             0
           else
@@ -38,6 +40,7 @@ module ChefDK
           super
           Generator.add_attr_to_context(:habichef_name, habichef_name)
           Generator.add_attr_to_context(:habichef_root, habichef_root)
+          Generator.add_attr_to_context(:skip_git_init, habichef_path_in_git_repo?)
         end
 
         def habichef_name
@@ -65,6 +68,13 @@ module ChefDK
 
         def params_valid?
           @params_valid
+        end
+
+        def habichef_path_in_git_repo?
+          Pathname.new(habichef_full_path).ascend do |dir|
+            return true if File.directory?(File.join(dir.to_s, '.git'))
+          end
+          false
         end
       end
     end

@@ -1,0 +1,5 @@
+Style/Semicolon:
+  Exclude:
+    - 'bin/console'
+    - 'bin/gal'
+    - 'bin/galvanize'

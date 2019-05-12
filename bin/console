@@ -2,13 +2,11 @@
 
 require 'bundler/setup'
 require 'galvanize'
+require 'chef-dk/cli'
+require 'chef-dk/command/generator_commands/habichef'
+require 'chef-dk/configurable-patch'
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+Kernel.trap(:INT) { print("\n"); exit 1 }
 
-# (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
-
-require 'irb'
-IRB.start(__FILE__)
+require 'pry'
+Pry.start

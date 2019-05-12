@@ -5,7 +5,7 @@ habitat_dir = File.join context.habichef_root, context.habichef_name
 
 generator_desc 'Ensuring correct HabiChef project content'
 
-spdx_license =  case context.license
+_spdx_license = case context.license
                 when 'apachev2'
                   'Apache-2.0'
                 when 'mit'

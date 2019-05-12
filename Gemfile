@@ -7,11 +7,10 @@ gemspec
 
 gem 'chef'
 gem 'chef-dk'
-gem 'json'
-gem 'mixlib-cli', require: 'mixlib/cli'
 
 group :development do
   gem 'bundler'
+  gem 'pry'
   gem 'rake'
   gem 'rspec'
   gem 'rubocop'
