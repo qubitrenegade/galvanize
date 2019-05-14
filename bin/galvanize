@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'galvanize'
+
+Kernel.trap(:INT) { print("\n"); exit 1 }
+
+# We just need to `require` cli, habichef, and configuable-patch in that order before calling ChefDK::CLI.new
+# Might be able to do without bundler?
+ChefDK::CLI.new(ARGV.clone).run

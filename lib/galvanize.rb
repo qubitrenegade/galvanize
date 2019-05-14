@@ -1,8 +1,7 @@
 require 'bundler/setup'
-Bundler.require :default
-
-require 'galvanize/cli'
-require 'galvanize/helpers'
+require 'chef-dk/cli'
+require 'chef-dk/command/generator_commands/habichef'
+require 'chef-dk/configurable-patch'
 
 module Galvanize
 end
