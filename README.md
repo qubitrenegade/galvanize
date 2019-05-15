@@ -46,7 +46,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Things todo/Help Wanted
 
-* [ ] #1: How to load custom `code_generator` for only new generators.
+* [x] ~~#1: How to load custom `code_generator` for only new generators.~~
 * [ ] #2: Terraform Generator.
 * [ ] #3: NodeJS project generator.
 * [ ] #4: Implications of `chef-dk` as a gem dep.

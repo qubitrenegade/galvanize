@@ -1,3 +1,4 @@
+require 'galvanize'
 require 'chef-dk/command/generate'
 require 'chef-dk/command/generator_commands/base'
 
@@ -16,6 +17,9 @@ module ChefDK
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
+          Chef::Config.send :config_context, :chefdk do
+            default :generator_cookbook, File.join(Galvanize.skeletons_dir, 'habichef')
+          end
           @params_valid = true
           @habichef_name = nil
           @verbose = false
